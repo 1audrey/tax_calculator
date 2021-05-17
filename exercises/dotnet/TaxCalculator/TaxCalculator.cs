@@ -15,7 +15,8 @@ namespace TaxCalculator
 
         protected TaxCalculator(int year)
         {
-            Year = 2019;
+            Year = year;
         }
+
     }
 }
