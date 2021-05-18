@@ -6,19 +6,19 @@ namespace TaxCalculator
 {
     public class CalculateTax : TaxCalculator
     {
+        /*
         public CalculateTax()
         {
 
         }
-
-        protected bool Featured1 { get; } = false;
-        protected bool Feature2 { get; } = false;
+        protected bool Feature1 { get; } = true;
+        protected bool Feature2 { get; } = true;
 
         public CalculateTax(string featureName)
         {
             if (featureName.Equals("Test1"))
             {
-                Featured1 = true;
+                Feature1 = true;
             }
 
             if (featureName.Equals("Test2"))
@@ -26,45 +26,37 @@ namespace TaxCalculator
                 Feature2 = true;
             }
         }
+        */
 
         public override int CalculateVehicleTax(Vehicle vehicle)
         {
-
-
-            if (Featured1)
+            if ((Year > vehicle.DateOfFirstRegistration.Year + 1) && (vehicle.ListPrice > 40000))
             {
-                if (Year > vehicle.DateOfFirstRegistration.Year + 1)
+                if (vehicle.FuelType == FuelType.Petrol || vehicle.FuelType == FuelType.Diesel)
                 {
-                    if (vehicle.FuelType == FuelType.Petrol || vehicle.FuelType == FuelType.Diesel)
-                    {
-                        return 140;
-                    }
-                    else if (vehicle.FuelType == FuelType.Electric)
-                    {
-                        return 0;
-                    }
-                    else
-                        return 130;
+                    return 450;
+                }
+                else if (vehicle.FuelType == FuelType.Electric)
+                {
+                    return 310;
+                }
+                else if (vehicle.FuelType == FuelType.AlternativeFuel)
+                {
+                    return 440;
                 }
             }
-
-            if (Feature2)
+            else if (Year > vehicle.DateOfFirstRegistration.Year + 1)
             {
-                if ((Year > vehicle.DateOfFirstRegistration.Year + 1) && (vehicle.ListPrice > 40000))
+                if (vehicle.FuelType == FuelType.Petrol || vehicle.FuelType == FuelType.Diesel)
                 {
-                    if (vehicle.FuelType == FuelType.Petrol || vehicle.FuelType == FuelType.Diesel)
-                    {
-                        return 450;
-                    }
-                    else if (vehicle.FuelType == FuelType.Electric)
-                    {
-                        return 310;
-                    }
-                    else
-                    {
-                        return 440;
-                    }
+                    return 140;
                 }
+                else if (vehicle.FuelType == FuelType.Electric)
+                {
+                    return 0;
+                }
+                else if (vehicle.FuelType == FuelType.AlternativeFuel)
+                    return 130;
             }
 
             if (vehicle.FuelType == FuelType.Petrol)
@@ -121,9 +113,7 @@ namespace TaxCalculator
                     return 2070;
             }
 
-         
             if(vehicle.FuelType == FuelType.Diesel)
-
             {
                 if (vehicle.Co2Emissions == 0)
                 {
@@ -173,9 +163,9 @@ namespace TaxCalculator
                     return 2070;
             }
 
-          if(vehicle.FuelType == FuelType.AlternativeFuel)
-          {
-           if (vehicle.Co2Emissions == 0)
+            if (vehicle.FuelType == FuelType.AlternativeFuel)
+            {
+                if (vehicle.Co2Emissions == 0)
                 {
                     return 0;
                 }
@@ -226,8 +216,7 @@ namespace TaxCalculator
                 else
                     return 2060;
             }
-            return 0;
+        return 0;
         }
-     
     }
 }
