@@ -6,8 +6,42 @@ namespace TaxCalculator
 {
     public class CalculateTax : TaxCalculator
     {
+        public CalculateTax()
+        {
+
+        }
+
+        protected bool Featured1 { get; } = false;
+
+        public CalculateTax(string featureName)
+        {
+            if (featureName.Equals("Test1"))
+            {
+                Featured1 = true;
+            }
+        }
+
         public override int CalculateVehicleTax(Vehicle vehicle)
         {
+
+
+            if (Featured1)
+            {
+                if (Year > vehicle.DateOfFirstRegistration.Year + 1)
+                {
+                    if (vehicle.FuelType == FuelType.Petrol || vehicle.FuelType == FuelType.Diesel)
+                    {
+                        return 140;
+                    }
+                    else if (vehicle.FuelType == FuelType.Electric)
+                    {
+                        return 0;
+                    }
+                    else
+                        return 130;
+                }
+            }
+
             if (vehicle.FuelType == FuelType.Petrol)
             {
                 if (vehicle.Co2Emissions == 0)
