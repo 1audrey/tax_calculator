@@ -12,12 +12,18 @@ namespace TaxCalculator
         }
 
         protected bool Featured1 { get; } = false;
+        protected bool Feature2 { get; } = false;
 
         public CalculateTax(string featureName)
         {
             if (featureName.Equals("Test1"))
             {
                 Featured1 = true;
+            }
+
+            if (featureName.Equals("Test2"))
+            {
+                Feature2 = true;
             }
         }
 
@@ -39,6 +45,25 @@ namespace TaxCalculator
                     }
                     else
                         return 130;
+                }
+            }
+
+            if (Feature2)
+            {
+                if ((Year > vehicle.DateOfFirstRegistration.Year + 1) && (vehicle.ListPrice > 40000))
+                {
+                    if (vehicle.FuelType == FuelType.Petrol || vehicle.FuelType == FuelType.Diesel)
+                    {
+                        return 450;
+                    }
+                    else if (vehicle.FuelType == FuelType.Electric)
+                    {
+                        return 310;
+                    }
+                    else
+                    {
+                        return 440;
+                    }
                 }
             }
 
